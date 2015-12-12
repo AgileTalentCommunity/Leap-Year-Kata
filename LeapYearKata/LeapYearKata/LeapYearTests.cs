@@ -30,13 +30,20 @@ namespace LeapYearKata
             var actual = LeapYear.IsLeapYear(1900);
             Check.That(actual).IsFalse();
         }
+
+        [Test]
+        public void Should_return_true_when_year_is_an_atypical_leap_year()
+        {
+            var actual = LeapYear.IsLeapYear(2000);
+            Check.That(actual).IsTrue();
+        }
     }
 
     public class LeapYear
     {
         public static bool IsLeapYear(int year)
         {
-            if (year%100 == 0) return false;
+            if (year%100 == 0 && year%400!=0) return false;
             if (year%4 == 0) return true;
             return false;
         }
